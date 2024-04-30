@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Main{% endblock %}
+
+{% block content %}
+
+        <div class="container mt-5 mb-4">
+
+              <form role="form" action="/search_for_events" method="POST" id="search_form">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="input-group input-group-lg align-items-center">
+                        <input type="text" class="form-control rounded-left" name="search_field" id="search_field" form="search_form">
+                        <button type="submit" id="search_button" class="btn btn-primary rounded-right">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div class="container ml-1 mr-1">
+            <div class="row row-cols-2 row-cols-md-4 gx-4">
+                {% for event in events %}
+
+                      <div class="col margin_bottom">
+                        <div class="card h-100">
+                          <form role="form" action="/add_event" method="POST" id="add_event_{{loop.index}}">
+                          <a href="javascript:{}" onclick="document.getElementById('add_event_{{loop.index}}').submit();">
+                              <input type="hidden" name="event_id" form="add_event_{{loop.index}}" id="event_id_{{loop.index}}" value="{{event.id}}">
+                              <input type="hidden" name="event_name" form="add_event_{{loop.index}}" id="event_name_{{loop.index}}" value="{{event.name}}">
+                              <input type="hidden" name="event_url" form="add_event_{{loop.index}}" id="event_url_{{loop.index}}" value="{{event.url}}">
+                              <div class="img-wrapper img_wrapper_{{loop.index}}">
+                                  <div class="svg-wrapper" id="svg-wrapper_{{loop.index}}">
+                                      <svg id="plus_svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256"
+                                        style="fill:#228BE6;">
+                                        <g transform=""><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M96,192c-17.67311,0 -32,-14.32689 -32,-32v-64c0,-17.67311 14.32689,-32 32,-32h64c17.67311,0 32,14.32689 32,32v64c0,17.67311 -14.32689,32 -32,32z" id="shape"></path></g><g fill="#228be6" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M25,2c-12.683,0 -23,10.317 -23,23c0,12.683 10.317,23 23,23c12.683,0 23,-10.317 23,-23c0,-12.683 -10.317,-23 -23,-23zM37,26h-11v11h-2v-11h-11v-2h11v-11h2v11h11z"></path></g></g></g>
+                                      </svg>
+                                  </div>
+                                  {% set img_link = [] %}
+                                  <div class="img_card blur zoom" onmouseover="addSVG(this)" onmouseout="removeSVG(this)" id="img_card_{{loop.index}}">
+                                      {% for image in event.images if 'RETINA_LANDSCAPE' in image['url'] %}
+                                                    <img class="card-img-top" src="{{ image['url'] }}">
+                                                    {% set temp = img_link.append(image['url'])%}
+                                      {% endfor %}
+                                      <input type="hidden" name="event_img_url" form="add_event_{{loop.index}}" id="img_url_{{loop.index}}" value="{{ img_link[0] }}">
+                                  </div>
+                              </div>
+                          </a>
+
+                          </form>
+                          <div class="card-body">
+                            <h5 class="card-title">{{ event.name }}</h5>
+
+                            {% set public = event.sales.public %}
+                            {% if public %}
+                            <p class="card-text">Public sale: {{public['startDateTime']}}</p>
+                            {% endif %}
+
+                            {% set date = event.dates.start.localDate %}
+                            {% if date %}
+                            <p class="card-text">Date: {{event.dates.start.localDate}}</p>
+                            {% endif %}
+
+                            {% set presale = event.sales.presales| first %}
+                            {% if presale %}
+                                <p class="card-text">Presale: {{presale.startDateTime}}</p>
+                            {% endif %}
+
+                            {% set priceRanges = event.priceRanges| first %}
+                            {% if presale %}
+                                <p class="card-text">Min price: {{priceRanges.min}} {{priceRanges.currency}}</p>
+                                <p class="card-text">Max price: {{priceRanges.max}} {{priceRanges.currency}}</p>
+                            {% endif %}
+
+
+                          </div>
+                        </div>
+                      </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/events"><button class="btn btn-primary">Events</button></a>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+{% endblock %}

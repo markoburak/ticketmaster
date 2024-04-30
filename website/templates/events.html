@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Main{% endblock %}
+
+{% block content %}
+
+
+    <div class="container mt-5 mb-4">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="align-items-center text-center">
+                <h1 class="roboto-mono-font">My library</h1>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="container ml-1 mr-1">
+        <div class="row row-cols-2 row-cols-md-4 gx-4">
+            {% for event in user_events %}
+                  <div class="col margin_bottom">
+                    <div class="card text-white bg-dark h-100">
+                                  <div class="img_card">
+                                                    <img class="card-img-top" src="{{event.img_url}}">
+                                  </div>
+                      <div class="card-body">
+                        <h5 class="card-title roboto-regular">{{event.name}}</h5>
+                        <p class="card-text roboto-regular">{{event.id}}</p>
+                        <p class="card-text roboto-regular">{{event.event_id}}</p>
+                      </div>
+                      <div class="card-footer">
+                              <div class="btn-wrapper text-center d-flex justify-content-between">
+                                <a class="btn btn-warning" style="">Info</a>
+                                <a class="btn btn-primary  btn-sm text-white d-flex align-items-center" href="{{event.url}}">Ticketmaster</a>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+              </div>
+            </div>
+        </div>
+
+{% endblock %}

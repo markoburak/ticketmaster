@@ -1,0 +1,222 @@
+body {
+    padding-bottom: 120px;
+    @apply cursor-default antialiased bg-white dark:bg-black text-black dark:text-white;
+}
+
+a {
+  @apply transition-colors text-emerald-600 dark:text-emerald-500 hover:text-emerald-500 dark:hover:text-emerald-400;
+  color: inherit;
+}
+
+p {
+    margin: 0px !important;
+}
+
+input[readonly] {
+    background-color: #999999;
+}
+
+.mult-select-tag .body {
+    background: #1a1a1a !important;
+}
+
+.date_column {
+    min-width: 100px;
+}
+
+.white_text {
+    color: white;
+}
+
+.center_text {
+    text-align: center;
+}
+
+.row {
+  padding-top: 20px;
+}
+
+.hide {
+    display:none;
+}
+
+.white_image {
+  filter: brightness(0) invert(1);
+}
+
+.list_img {
+  display:block;
+  max-height:160px;
+  width: auto;
+}
+
+.full_width{
+    width: 100%;
+}
+
+.margin_bottom{
+    margin-bottom: 20px;
+}
+
+.blur:hover {
+    webkit-filter: blur(2px); /* Chrome, Safari, Opera */
+    filter: blur(2px);
+}
+
+.zoom:hover {
+  transform: scale(1.2);
+}
+
+.zoom {
+  transition: transform .4s; /* Animation */
+}
+
+.card {
+    overflow: hidden;
+}
+
+.svg-wrapper {
+    display: none;
+}
+
+.img-card {
+    overflow: hidden;
+}
+
+.img-wrapper {
+    position: relative;
+    display: inline-block; /* <= shrinks container to image size */
+    overflow: hidden;
+}
+
+.img-wrapper img { /* <= optional, for responsiveness */
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+
+.img-wrapper svg {
+  pointer-events: none;
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.5);
+  z-index: 10;
+}
+
+.card-img-top {
+    object-fit: cover;
+}
+
+/*
+multiple selector options
+
+.mult-select-tag .item-container {
+    color: black !important;
+    background: #94e3d3 !important;
+}
+
+.mult-select-tag .item-label {
+    color: #dedede !important;
+}
+*/
+
+.roboto-mono-font {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.btn-wrapper .btn-secondary {
+  line-height: 1;
+}
+
+
+@media screen and (max-width: 479px) {
+
+    .row {
+      padding-top: 5px;
+    }
+
+    .w_30_p{
+      width: 30vw;
+    }
+
+}
+
+
